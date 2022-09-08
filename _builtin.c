@@ -11,13 +11,11 @@ int _myexit(info_t *info)
 {
 	int exitcheck;
 
-
 	if (info->argv[1])  /* If there is an exit arguement */
 	{
 		exitcheck = _erratoi(info->argv[1]);
 		if (exitcheck == -1)
 		{
-
 			info->status = 2;
 			print_error(info, "Illegal number: ");
 			_eputs(info->argv[1]);
@@ -39,10 +37,8 @@ int _myexit(info_t *info)
  */
 int _mycd(info_t *info)
 {
-
 	char *s, *dir, buffer[1024];
 	int chdir_ret;
-
 
 	s = getcwd(buffer, 1024);
 	if (!s)
@@ -58,7 +54,6 @@ int _mycd(info_t *info)
 	}
 	else if (_strcmp(info->argv[1], "-") == 0)
 	{
-
 		if (!_getenv(info, "OLDPWD="))
 		{
 			_puts(s);
@@ -73,17 +68,14 @@ int _mycd(info_t *info)
 		chdir_ret = chdir(info->argv[1]);
 	if (chdir_ret == -1)
 	{
-
 		print_error(info, "can't cd to ");
 		_eputs(info->argv[1]), _eputchar('\n');
 	}
 	else
 	{
-
 		_setenv(info, "OLDPWD", _getenv(info, "PWD="));
 		_setenv(info, "PWD", getcwd(buffer, 1024));
 	}
-
 	return (0);
 }
 
@@ -95,9 +87,7 @@ int _mycd(info_t *info)
  */
 int _myhelp(info_t *info)
 {
-
 	char **arg_array;
-
 
 	arg_array = info->argv;
 	_puts("help call works. Function not yet implemented \n");
